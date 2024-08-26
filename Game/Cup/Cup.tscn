@@ -1,0 +1,166 @@
+[gd_scene load_steps=14 format=3 uid="uid://dmrgb02ubyixl"]
+
+[ext_resource type="Texture2D" uid="uid://cr4rfl3dgsabd" path="res://Game/Cup/cup_background.png" id="1_85lxg"]
+[ext_resource type="Script" path="res://Game/Cup/Cup.gd" id="1_gm2q5"]
+[ext_resource type="Texture2D" uid="uid://b6oul4x0bcq8j" path="res://Game/Cup/tmpref.jpg" id="1_in0aw"]
+[ext_resource type="Texture2D" uid="uid://bbhtxknp85v7v" path="res://Game/Cup/cup_border.png" id="1_xykj8"]
+[ext_resource type="AudioStream" uid="uid://cia0gvyjx7ijd" path="res://Game/Cup/alarm.mp3" id="2_ahxwj"]
+[ext_resource type="Texture2D" uid="uid://db0iuuks6k8d3" path="res://Game/Cup/cup_content_clip.png" id="2_ds6ws"]
+[ext_resource type="PackedScene" uid="uid://df13g2im2tb7f" path="res://Game/Cup/Water/Water.tscn" id="2_u7ufh"]
+[ext_resource type="AudioStream" uid="uid://ciwphni1n2nl5" path="res://Game/Cup/alarm_long.mp3" id="3_0rn6c"]
+[ext_resource type="Texture2D" uid="uid://d0hqigjmvhkax" path="res://Game/Cup/cup_foreground.png" id="7_6jhfo"]
+
+[sub_resource type="Animation" id="7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WaterClip/Water:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "in_limit"
+length = 3.4
+capture_included = true
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ahxwj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ahxwj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ahxwj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ahxwj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_0rn6c")
+}],
+"times": PackedFloat32Array(0.5, 1.4, 2.2, 2.6, 3)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 2,
+"values": [1.0, 0.8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaterClip/Water:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667, 1.4, 1.8, 2.2, 2.4, 2.6, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fwvuy"]
+_data = {
+"RESET": SubResource("7"),
+"in_limit": SubResource("6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d124v"]
+size = Vector2(620, 300)
+
+[node name="Cup" type="StaticBody2D"]
+collision_layer = 3
+script = ExtResource("1_gm2q5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fwvuy")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="TmpRef" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(739, -30)
+texture = ExtResource("1_in0aw")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_85lxg")
+
+[node name="WaterClip" type="Sprite2D" parent="."]
+clip_children = 1
+texture = ExtResource("2_ds6ws")
+metadata/_edit_lock_ = true
+
+[node name="Water" parent="WaterClip" instance=ExtResource("2_u7ufh")]
+position = Vector2(-310, -265)
+width = 620
+spread_factor = 0.5
+springs_amount = 24
+border_thickness = 16.0
+surface_color = Color(0.980392, 0.701961, 0.705882, 1)
+color = Color(1, 0.537255, 0.545098, 1)
+
+[node name="LimitArea2D" type="Area2D" parent="WaterClip/Water"]
+position = Vector2(310, -165)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterClip/Water/LimitArea2D"]
+shape = SubResource("RectangleShape2D_d124v")
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("1_xykj8")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("7_6jhfo")
+
+[node name="Left" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(10, 564, -33, 563, -95, 560, -132, 552, -168, 530, -193, 494, -212, 436, -224, 347, -237, 152, -245, -160, -249, -251, -259, -372, -231, -424, -200, -461, -150, -501, -90, -530, -27, -545, 11, -547, 10, -750, -360, -750, -360, 690, 10, 690)
+
+[node name="Right" type="CollisionPolygon2D" parent="."]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(10, 564, -33, 563, -95, 560, -132, 552, -168, 530, -193, 494, -212, 436, -224, 347, -237, 152, -245, -160, -249, -251, -259, -372, -231, -424, -200, -461, -150, -501, -90, -530, -27, -545, 11, -547, 10, -750, -360, -750, -360, 690, 10, 690)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="WaterClip/Water/LimitArea2D" to="." method="_on_limit_area_2d_body_entered"]
+[connection signal="body_exited" from="WaterClip/Water/LimitArea2D" to="." method="_on_limit_area_2d_body_exited"]

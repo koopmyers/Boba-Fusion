@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bd665dkcond6p"]
+
+[ext_resource type="Script" path="res://Game/Cup/Water/SplashParticles.gd" id="1_wgks4"]
+[ext_resource type="Texture2D" uid="uid://v6w6g6wsfsbh" path="res://Game/Fruits/particules.png" id="2_yxs6g"]
+[ext_resource type="AudioStream" uid="uid://boca5n7egbcv6" path="res://Game/Cup/Water/splash.mp3" id="3_o3cgy"]
+
+[sub_resource type="Gradient" id="1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
+
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0.636364), 0.0, 0.0767676, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 150, 0)
+scale_curve = SubResource("4")
+color_ramp = SubResource("2")
+
+[node name="SplashParticles" type="Node2D"]
+script = ExtResource("1_wgks4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("5")
+texture = ExtResource("2_yxs6g")
+lifetime = 0.75
+explosiveness = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o3cgy")
+volume_db = -5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

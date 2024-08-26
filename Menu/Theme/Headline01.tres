@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c6f12tviwtlps"]
+
+[ext_resource type="FontFile" uid="uid://66dgni7lmmfs" path="res://Menu/Theme/LilitaOne-Regular-NotoSans-Black.ttf" id="1_1c5kk"]
+
+[resource]
+Label/colors/font_color = Color(1, 0.992157, 0.980392, 1)
+Label/colors/font_outline_color = Color(0.0705882, 0.0235294, 0.176471, 1)
+Label/colors/font_shadow_color = Color(0.0705882, 0.0235294, 0.176471, 1)
+Label/constants/outline_size = 9
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 6
+Label/font_sizes/font_size = 85
+Label/fonts/font = ExtResource("1_1c5kk")

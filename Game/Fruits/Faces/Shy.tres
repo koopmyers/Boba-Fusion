@@ -1,0 +1,66 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cugwfhmn460oi"]
+
+[ext_resource type="Texture2D" uid="uid://c8lyltlt5jh0d" path="res://Game/Fruits/Faces/faces.png" id="1_x8yp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ha1x"]
+atlas = ExtResource("1_x8yp3")
+region = Rect2(0, 1200, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfdlr"]
+atlas = ExtResource("1_x8yp3")
+region = Rect2(0, 400, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa860"]
+atlas = ExtResource("1_x8yp3")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pq5y"]
+atlas = ExtResource("1_x8yp3")
+region = Rect2(0, 1600, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxgt7"]
+atlas = ExtResource("1_x8yp3")
+region = Rect2(0, 800, 400, 400)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ha1x")
+}],
+"loop": false,
+"name": &"crushed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfdlr")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa860")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pq5y")
+}],
+"loop": false,
+"name": &"in_danger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxgt7")
+}],
+"loop": false,
+"name": &"rolling",
+"speed": 5.0
+}]

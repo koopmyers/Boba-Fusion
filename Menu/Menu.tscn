@@ -1,0 +1,291 @@
+[gd_scene load_steps=15 format=3 uid="uid://u8166etwwvol"]
+
+[ext_resource type="Script" path="res://Menu/Menu.gd" id="2"]
+[ext_resource type="Theme" uid="uid://b5q1hkg1a5ne0" path="res://Menu/Theme/Theme.tres" id="3"]
+[ext_resource type="Material" uid="uid://dxyxc3iwdorj2" path="res://Menu/Modal/BlurMaterial.tres" id="3_5tdcn"]
+[ext_resource type="Theme" uid="uid://bg1vllc8c2hq1" path="res://Menu/Theme/ButtonReplay.tres" id="4"]
+[ext_resource type="Theme" uid="uid://ce7llfwqtkwqy" path="res://Menu/Theme/Headline02.tres" id="5"]
+[ext_resource type="Theme" uid="uid://c6f12tviwtlps" path="res://Menu/Theme/Headline01.tres" id="6"]
+[ext_resource type="Theme" uid="uid://uycnh5ld76ni" path="res://Menu/Theme/Headline03.tres" id="7"]
+[ext_resource type="Theme" uid="uid://cgmj8d0rgk8vw" path="res://Menu/Theme/ButtonVolume.tres" id="8"]
+[ext_resource type="Script" path="res://Menu/VolumeButton.gd" id="8_ci576"]
+[ext_resource type="Theme" uid="uid://cqopxqxg45tbt" path="res://Menu/Theme/ButtonClose.tres" id="9"]
+[ext_resource type="Theme" uid="uid://sg7o0unhg80e" path="res://Menu/Theme/ButtonInfo.tres" id="10"]
+
+[sub_resource type="Animation" id="2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/Pivot:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/Pivot:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="1"]
+resource_name = "best_score"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/Pivot:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/Pivot:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_utc77"]
+_data = {
+"RESET": SubResource("2"),
+"best_score": SubResource("1")
+}
+
+[node name="Menu" type="MarginContainer" node_paths=PackedStringArray("background")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3")
+script = ExtResource("2")
+background = NodePath("Background")
+
+[node name="Background" type="ColorRect" parent="."]
+material = ExtResource("3_5tdcn")
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 750)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = -9
+
+[node name="InGame" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("3")
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BestScore" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/InGame"]
+layout_mode = 2
+theme_override_constants/separation = -12
+alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/InGame/BestScore"]
+custom_minimum_size = Vector2(87, 35)
+layout_mode = 2
+theme = ExtResource("7")
+text = "BEST_SCORE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="InGameBestScoreValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/InGame/BestScore"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("6")
+text = "500 000 000"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ReplayButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/InGame"]
+custom_minimum_size = Vector2(232, 232)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/InGame"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="VolumeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/InGame/HBoxContainer2"]
+custom_minimum_size = Vector2(116, 116)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("8")
+toggle_mode = true
+script = ExtResource("8_ci576")
+
+[node name="InfoButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/InGame/HBoxContainer2"]
+custom_minimum_size = Vector2(116, 116)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("10")
+
+[node name="Space" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/InGame"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/InGame"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("9")
+
+[node name="Info" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("3")
+theme_override_constants/separation = 9
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/Info"]
+layout_mode = 2
+theme = ExtResource("7")
+text = "INFO_TITLE"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7")
+text = "INFO_TEXT"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/Info"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("9")
+
+[node name="EndGame" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3")
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/EndGame"]
+layout_mode = 2
+theme_override_constants/separation = 44
+alignment = 1
+
+[node name="Score" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/Score"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(87, 35)
+layout_mode = 2
+theme = ExtResource("7")
+text = "SCORE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/Score"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Pivot" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/Score/CenterContainer"]
+layout_mode = 2
+
+[node name="ScoreValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/Score/CenterContainer/Pivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -63.5
+offset_right = 222.0
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6")
+text = "500 000 000"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/Score"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_utc77")
+}
+
+[node name="BestScore" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/BestScore"]
+custom_minimum_size = Vector2(87, 35)
+layout_mode = 2
+theme = ExtResource("7")
+text = "BEST_SCORE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="BestScoreValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/EndGame/VBoxContainer/BestScore"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(87, 35)
+layout_mode = 2
+theme = ExtResource("5")
+text = "500 000 000"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ReplayButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/EndGame"]
+custom_minimum_size = Vector2(232, 232)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4")
+
+[node name="Space" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/EndGame"]
+layout_mode = 2
+
+[connection signal="closed" from="." to="." method="_on_closed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/InGame/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/InGame/HBoxContainer2/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/InGame/CloseButton" to="." method="close"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/Info/CloseButton" to="." method="close"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/EndGame/ReplayButton" to="." method="_on_replay_button_pressed"]

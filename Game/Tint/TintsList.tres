@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://c1xvq43ipffa3"]
+
+[ext_resource type="Script" path="res://Game/Tint/Tint.gd" id="1_n238c"]
+[ext_resource type="Script" path="res://Game/Tint/TintsList.gd" id="1_oxdwg"]
+[ext_resource type="Resource" uid="uid://bdq7v0ooflnjt" path="res://Game/Tint/Tints/Coffee.tres" id="2_517ya"]
+[ext_resource type="Resource" uid="uid://ds7wv0l3rjrvo" path="res://Game/Tint/Tints/Red.tres" id="2_bf1sf"]
+[ext_resource type="Resource" uid="uid://clnnf7ccdviw3" path="res://Game/Tint/Tints/Matcha.tres" id="3_681fc"]
+[ext_resource type="Resource" uid="uid://ctuwp3oy882se" path="res://Game/Tint/Tints/Orange.tres" id="4_axq0m"]
+[ext_resource type="Resource" uid="uid://b7i8vq8s2dgra" path="res://Game/Tint/Tints/Pink.tres" id="5_g5bim"]
+[ext_resource type="Resource" uid="uid://cgvgoo6n46eke" path="res://Game/Tint/Tints/Purple.tres" id="6_uleqd"]
+[ext_resource type="Resource" uid="uid://d06p7mn81m56p" path="res://Game/Tint/Tints/Yellow.tres" id="8_h25fk"]
+
+[resource]
+script = ExtResource("1_oxdwg")
+list = Array[ExtResource("1_n238c")]([ExtResource("2_517ya"), ExtResource("3_681fc"), ExtResource("4_axq0m"), ExtResource("5_g5bim"), ExtResource("6_uleqd"), ExtResource("2_bf1sf"), ExtResource("8_h25fk")])

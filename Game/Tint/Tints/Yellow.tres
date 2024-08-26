@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tint" load_steps=2 format=3 uid="uid://d06p7mn81m56p"]
+
+[ext_resource type="Script" path="res://Game/Tint/Tint.gd" id="1_obcu4"]
+
+[resource]
+script = ExtResource("1_obcu4")
+background_color = Color(1, 0.847059, 0.321569, 1)
+water_surface_color = Color(1, 0.917647, 0.592157, 1)
+water_color = Color(1, 0.854902, 0.301961, 1)

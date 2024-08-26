@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://q67a77w61qfc"]
+
+[ext_resource type="Texture2D" uid="uid://de0al08ocuuqw" path="res://Game/Fruits/tiapoca_bubbles.png" id="1_kob0c"]
+
+[resource]
+atlas = ExtResource("1_kob0c")
+region = Rect2(1820, 0, 260, 260)

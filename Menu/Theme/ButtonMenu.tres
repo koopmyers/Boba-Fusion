@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://64pdbwltrypl"]
+
+[ext_resource type="Texture2D" uid="uid://b556d0s6s2i3t" path="res://Menu/Theme/buttons.png" id="1_7lmla"]
+
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("1_7lmla")
+region_rect = Rect2(0, 0, 116, 116)
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxTexture" id="2"]
+texture = ExtResource("1_7lmla")
+region_rect = Rect2(0, 116, 116, 116)
+
+[resource]
+Button/styles/disabled = SubResource("1")
+Button/styles/focus = SubResource("3")
+Button/styles/hover = SubResource("1")
+Button/styles/normal = SubResource("1")
+Button/styles/pressed = SubResource("2")

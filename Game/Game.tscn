@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://drgcaditud167"]
+
+[ext_resource type="Script" path="res://Game/Game.gd" id="1"]
+[ext_resource type="Script" path="res://Game/UserInputsController.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://6tiamexa1ooy" path="res://Game/Claw.tscn" id="3"]
+[ext_resource type="Resource" uid="uid://c1xvq43ipffa3" path="res://Game/Tint/TintsList.tres" id="3_vdj1w"]
+[ext_resource type="PackedScene" uid="uid://dtfufs0ee1tp8" path="res://Game/HUD/HUD.tscn" id="4_2ki1l"]
+[ext_resource type="PackedScene" uid="uid://dj8ny165wopn5" path="res://Game/Fruits/TapiocaBubble.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dmrgb02ubyixl" path="res://Game/Cup/Cup.tscn" id="12_rcube"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1")
+BubbleScene = ExtResource("5")
+tints_list = ExtResource("3_vdj1w")
+
+[node name="MultiplicatorTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PopTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98, 0.637, 0.65415, 1)
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="Foreground" instance=ExtResource("4_2ki1l")]
+
+[node name="UserInputsController" type="Node2D" parent="."]
+script = ExtResource("2")
+
+[node name="Cup" parent="." instance=ExtResource("12_rcube")]
+position = Vector2(0, -614)
+
+[node name="Claw" parent="." instance=ExtResource("3")]
+position = Vector2(0, -1019)
+
+[node name="Bubbles" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -640)
+
+[connection signal="multiplicator_updated" from="." to="Foreground/HUD/MarginContainer/HBoxContainer/Pivot/MultiplicatorControl" method="_on_game_multiplicator_updated"]
+[connection signal="score_updated" from="." to="Foreground/HUD/MarginContainer/HBoxContainer/Pivot/ScoreControl" method="_on_game_score_updated"]
+[connection signal="timeout" from="MultiplicatorTimer" to="." method="_on_MultiplicatorTimer_timeout"]
+[connection signal="pressed" from="Foreground/HUD/MarginContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="bubble_dropped" from="UserInputsController" to="Claw" method="_on_user_inputs_controller_bubble_dropped"]
+[connection signal="overflowed" from="Cup" to="." method="_on_cup_overflowed"]
+[connection signal="armed" from="Claw" to="." method="_on_Claw_armed"]
+
+[editable path="Foreground/HUD"]

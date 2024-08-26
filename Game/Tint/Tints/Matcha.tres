@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tint" load_steps=2 format=3 uid="uid://clnnf7ccdviw3"]
+
+[ext_resource type="Script" path="res://Game/Tint/Tint.gd" id="1_fg21i"]
+
+[resource]
+script = ExtResource("1_fg21i")
+background_color = Color(0.862745, 0.917647, 0.443137, 1)
+water_surface_color = Color(0.964706, 0.980392, 0.623529, 1)
+water_color = Color(0.870588, 0.92549, 0.45098, 1)

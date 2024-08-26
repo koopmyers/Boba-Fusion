@@ -1,0 +1,296 @@
+[gd_scene load_steps=16 format=3 uid="uid://dj8ny165wopn5"]
+
+[ext_resource type="Script" path="res://Game/Fruits/TapiocasBubble.gd" id="1_53xvf"]
+[ext_resource type="AudioStream" uid="uid://c1bb80p54ouok" path="res://Game/Fruits/juice.mp3" id="2_04bip"]
+[ext_resource type="AudioStream" uid="uid://dia6o1jbv3ys6" path="res://Game/Fruits/success.mp3" id="3_tan1w"]
+[ext_resource type="AudioStream" uid="uid://bamwclyofss18" path="res://Game/Fruits/pop.mp3" id="4_kw3us"]
+[ext_resource type="Texture2D" uid="uid://taci2wiy0tgc" path="res://Game/Fruits/11.tres" id="5_gp5x4"]
+[ext_resource type="SpriteFrames" uid="uid://cugwfhmn460oi" path="res://Game/Fruits/Faces/Shy.tres" id="6_012o6"]
+[ext_resource type="Texture2D" uid="uid://v6w6g6wsfsbh" path="res://Game/Fruits/particules.png" id="7_bxwlb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1817j"]
+bounce = 0.1
+
+[sub_resource type="Animation" id="10"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2DA:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2DB:bus")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": ["Master"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "fusion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2DA")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_04bip")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2DA:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("AudioStreamPlayer2DB")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_tan1w")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("AudioStreamPlayer2DB:bus")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Reverb"]
+}
+
+[sub_resource type="Animation" id="13"]
+resource_name = "pop"
+length = 0.05
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2DA")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_kw3us")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2DA:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="11"]
+resource_name = "warning"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.4, 2, 2.2, 2.4, 2.6, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1), Color(1, 1, 1, 1), Color(1, 0, 0.258824, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8io03"]
+_data = {
+"RESET": SubResource("10"),
+"fusion": SubResource("12"),
+"pop": SubResource("13"),
+"warning": SubResource("11")
+}
+
+[sub_resource type="CircleShape2D" id="4"]
+radius = 108.0
+
+[sub_resource type="Curve" id="7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0786517, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="TapiocaBubble" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_1817j")
+can_sleep = false
+freeze = true
+script = ExtResource("1_53xvf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8io03")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_gp5x4")
+
+[node name="Scaler" type="Marker2D" parent="."]
+
+[node name="Face" type="AnimatedSprite2D" parent="Scaler"]
+position = Vector2(0, 15)
+scale = Vector2(0.619998, 0.619998)
+sprite_frames = ExtResource("6_012o6")
+animation = &"rolling"
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(0.2, 0.2)
+emitting = false
+amount = 12
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+fixed_fps = 30
+draw_order = 1
+texture = ExtResource("7_bxwlb")
+emission_shape = 1
+emission_sphere_radius = 189.0
+spread = 180.0
+gravity = Vector2(0, 80)
+scale_amount_curve = SubResource("7")
+
+[node name="AudioStreamPlayer2DA" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioStreamPlayer2DB" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_invincibility_timeout"]

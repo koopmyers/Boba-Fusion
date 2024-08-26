@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://pb1bpgx06rrc"]
+
+[ext_resource type="Script" path="res://App.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://drgcaditud167" path="res://Game/Game.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://u8166etwwvol" path="res://Menu/Menu.tscn" id="3"]
+
+[node name="App" type="Node"]
+script = ExtResource("1")
+
+[node name="Game" parent="." instance=ExtResource("2")]
+
+[node name="Menus" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Menu" parent="Menus" instance=ExtResource("3")]
+visible = false
+
+[connection signal="ended" from="Game" to="." method="_on_game_ended"]
+[connection signal="menu_pressed" from="Game" to="." method="_on_game_menu_pressed"]
+[connection signal="replay_pressed" from="Menus/Menu" to="." method="_on_menu_replay_pressed"]
