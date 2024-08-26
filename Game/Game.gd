@@ -13,8 +13,8 @@ const TOP_SCREEN_MARIN := 350 #px
 const BOTTOM_SCREEN_MARGIN := 50 #px
 const CLAW_BOX_MARING := 105
 
-const CLAW_BUBBLES := [1, 2, 3, 4, 5]
-const CLAW_START_SEQUENCE := [1, 1, 2, 3]
+const CLAW_BUBBLES := [0, 1, 2, 3, 4]
+const CLAW_START_SEQUENCE := [0, 0, 1, 2]
 
 const MULTIPLICATOR_MAX := 8
 
@@ -64,14 +64,13 @@ func start():
 
 
 func roll_next_bubble() -> int:
-	var type = 1
+	var type = 0
 	if claw_index < len(CLAW_START_SEQUENCE):
 		type = CLAW_START_SEQUENCE[claw_index] # in this order
 		claw_index += 1 
-		
+	
 	else:
-		var rn := randi() % len(bubbles_unlocked)
-		type =  bubbles_unlocked[rn]
+		type = bubbles_unlocked.pick_random()
 	
 	return type
 
