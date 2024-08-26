@@ -6,84 +6,84 @@ signal fusionned(bubble_a, bubble_b)
 
 
 const BASE_RADIUS := 108.0
-const PARAMS := {
-	1: {
+const PARAMS := [
+	{
 		"texture": preload("01.tres"),
 		"radius": 20,
 		"points": 2,
 		"color": Color("#fd5eca"),
 	},
 	
-	2: {
+	{
 		"texture": preload("02.tres"),
 		"radius": 27,
 		"points": 3,
 		"color": Color("#fbb62d"),
 	},
 	
-	3: {
+	{
 		"texture": preload("03.tres"),
 		"radius": 36,
 		"points": 6,
 		"color": Color("#63278b"),
 	},
 	
-	4: {
+	{
 		"texture": preload("04.tres"),
 		"radius": 47,
 		"points": 10,
 		"color": Color("#c7d820"),
 	},
 	
-	5: {
+	{
 		"texture": preload("05.tres"),
 		"radius": 58,
 		"points": 15,
 		"color": Color("a72653"),
 	},
 	
-	6: {
+	{
 		"texture": preload("06.tres"),
 		"radius": 71,
 		"points": 21,
 		"color": Color("#1ccd97"),
 	},
-
-	7: {
+	
+	{
 		"texture": preload("07.tres"),
 		"radius": 84,
 		"points": 28,
 		"color": Color("#f46525"),
 	},
-
-	8: {
+	
+	{
 		"texture": preload("08.tres"),
 		"radius": 96,
 		"points": 37,
 		"color": Color("#48d44f"),
 	},
 	
-	9: {
+	{
 		"texture": preload("09.tres"),
 		"radius": 106,
 		"points": 47,
 		"color": Color("#0774b8"),
 	},
 	
-	10: {
+	{
 		"texture": preload("10.tres"),
 		"radius": 115,
 		"points": 58,
 		"color": Color("#e1d395"),
 	},
 	
-	11: {
+	{
 		"texture": preload("11.tres"),
 		"radius": 130,
 		"points": 70,
 		"color": Color("#531e09"),
 	},
-}
+]
 
 const FACES := [
 	preload("Faces/Shy.tres"),
@@ -101,11 +101,15 @@ const CRUSHED_CONTACT_THRESHOLD: int = 4
 const ROLLING_VOLOCITY_THRESHOLD: float = 1.5
 
 
-@export var type: int = 1:
+@export var type: int = 0:
 	set(x):
+		if not is_type_valid(x):
+			push_error("Bubble type not valid")
+			return
+		
 		type = x
 		
-		var params = PARAMS.get(type, 1)
+		var params = PARAMS[type]
 		points = params.get("points", points)
 		
 		radius = params.get("radius", radius)
@@ -194,13 +198,25 @@ var in_danger := false
 @onready var audio_player_b := $AudioStreamPlayer2DB
 
 
+static func is_type_valid(p_type: int) -> bool:
+	return 0 <= p_type and p_type < len(PARAMS) 
+
+
 static func get_texture(p_type: int) -> Texture2D:
-	var params = PARAMS.get(p_type, 1)
+	if not is_type_valid(p_type):
+			push_error("Bubble type not valid")
+			return null
+	
+	var params = PARAMS[p_type]
 	return params.get("texture")
 
 
 static func get_color(p_type: int) -> Color:
-	var params = PARAMS.get(p_type, 1)
+	if not is_type_valid(p_type):
+			push_error("Bubble type not valid")
+			return Color.RED
+	
+	var params = PARAMS[p_type]
 	return params.get("color")
 
 
