@@ -1,5 +1,6 @@
 # Boba Fusion
-Watermelon merge/Suika mobile game developed in Godot 4.3 with aesthetic of Bubble Tea
+Watermelon merge/Suika mobile game developed in Godot 4.3 with aesthetic of Bubble Tea.
+
 This is a upgrade of [Watermelon Fusion](https://github.com/koopmyers/watermelon-fusion) project for Godot 3.5.
 
 ## Screenshots
