@@ -1,17 +1,17 @@
 extends Node2D
 
-@export var width = 32*6 #px, total water body lenght
-@export var depth = 1000 #px
-@export var density = 1.0
+@export var width := 32*6 #px, total water body lenght
+@export var depth := 1000 #px
+@export var density := 1.0
 
 @export var impact_factor := 50.0
-@export var spring_factor = 0.015
-@export var dampening_factor = 0.03
-@export var spread_factor = 0.2 #spread factor dictates how much the waves will spread to their neighboors
+@export var spring_factor := 0.015
+@export var dampening_factor := 0.03
+@export var spread_factor := 0.2 #spread factor dictates how much the waves will spread to their neighboors
 
 @export var springs_amount: int = 6 #number of springs in the scene
 
-@export var border_thickness = 1.1
+@export var border_thickness := 1.1
 
 @export var surface_color := Color.WHITE:
 	set(x):
@@ -33,7 +33,7 @@ var springs = []
 var passes = 12
 var is_initiated := false
 
-@onready var distance_between_springs = width/(springs_amount-1)
+@onready var distance_between_springs := width/float(springs_amount-1)
 @onready var initial_level := global_position.y
 
 @onready var water_polygon = $WaterPolygon
@@ -65,7 +65,7 @@ func initiate():
 	var rectangle = RectangleShape2D.new()
 	collisionShape.set_shape(rectangle)
 	rectangle.size = Vector2(width, depth)
-	collisionShape.position = Vector2(width / 2, depth / 2)
+	collisionShape.position = 0.5*Vector2(width, depth)
 	
 	
 	is_initiated = true
