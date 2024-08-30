@@ -32,7 +32,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Menu/Translation/translation.en.translation", "res://Menu/Translation/translation.fr.translation")
+locale/translations=PackedStringArray("res://Menu/Translation/translation.en.translation", "res://Menu/Translation/translation.fr.translation", "res://Menu/Translation/translation.es.translation")
 
 [rendering]
 
