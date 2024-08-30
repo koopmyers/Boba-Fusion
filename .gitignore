@@ -1,10 +1,13 @@
+# OS/File expolorers ignores
+*.DS_Store
 
-#Image export/import
+#Ressources export/import
 *.png~
 
 # Godot exports
 *.apk
 *.apk.idsig
+*/build
 /html
 
 # Godot 4+ specific ignores
