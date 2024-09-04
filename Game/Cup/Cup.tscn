@@ -142,6 +142,8 @@ color = Color(1, 0.537255, 0.545098, 1)
 
 [node name="LimitArea2D" type="Area2D" parent="WaterClip/Water"]
 position = Vector2(310, -165)
+collision_layer = 2
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterClip/Water/LimitArea2D"]

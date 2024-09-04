@@ -177,9 +177,11 @@ var physic_activated := false:
 			set_collision_mask_value(1, false)
 			freeze = true
 
-
 var is_fusionned := false
-var invincible := true
+var invincible := true:
+	set(x):
+		invincible = x
+		set_collision_layer_value(2, not invincible)
 
 var falling := false
 var rolling := false

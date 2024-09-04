@@ -45,8 +45,6 @@ func _on_limit_area_2d_body_entered(body: Node2D) -> void:
 		return
 	
 	body_in_limit_area += 1
-	if body.invincible:
-		return
 	
 	body.in_danger = true
 	if not (is_overflowed or is_in_danger):
@@ -58,8 +56,6 @@ func _on_limit_area_2d_body_exited(body: Node2D) -> void:
 		return
 	
 	body_in_limit_area -= 1
-	#if body.invincible:
-		#return
 	
 	body.in_danger = false
 	if not is_overflowed and body_in_limit_area <= 0:
