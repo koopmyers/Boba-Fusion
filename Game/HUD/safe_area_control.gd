@@ -16,7 +16,7 @@ static func control_to_window_safe_area(control: Control):
 	#print_debug("Window is full screen: ", Window.MODE_FULLSCREEN == control.get_window().mode)
 	
 	var window_to_root := Transform2D.IDENTITY.scaled(
-		control.get_tree().root.size / control.get_window().size)
+		Vector2(control.get_tree().root.size) / Vector2(control.get_window().size))
 		
 	var safe_area_root: Rect2 = window_to_root * Rect2(
 		DisplayServer.get_display_safe_area())
